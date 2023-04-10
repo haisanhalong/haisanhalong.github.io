@@ -1,0 +1,7 @@
+.idea/
+bin/
+obj/
+/node_modules/
+/dist/main.js
+/dist/main.js.LICENSE.txt
+*.fs.js
