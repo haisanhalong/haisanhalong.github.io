@@ -76,7 +76,7 @@ let config =
             Categories = [ Muc ]
           }
           { Name = "Chả cá"
-            Description = "Chả có cả tôm và mực, đóng gói nửa kg hoặc 1kg tuỳ theo yêu cầu."
+            Description = "Chả có cả tôm và mực, đóng gói 500gr hoặc 1kg tuỳ theo yêu cầu."
             Price = "240,000đ"
             Unit = Kg
             Image = "01-cha-ca.jpg"
@@ -90,21 +90,21 @@ let config =
             Categories = [ Tom  ]
           }
           { Name = "Chả giò hải sản"
-            Description = "Nhân ghẹ + tôm sắt + tôm tích + thịt, siêu ngon, tiện lợi, chỉ cần chiên đến khi vàng giòn."
+            Description = "Nhân ghẹ, tôm sắt, tôm tích, và thịt. Siêu ngon, tiện lợi, chỉ cần chiên đến khi vàng giòn."
             Price = "150,000đ"
             Unit = Khay10Cuon
             Image = "03-cha-gio-hai-san.jpg"
             Categories = [ Tom; Ghe ]
           }
           { Name = "Tôm sắt bóc nõn"
-            Description = "Là loại tôm nhỏ, đã bóc vỏ, xào chín. Có thể rim nước mắm, rim cùng với thịt, hoặc băm nhỏ để nấu canh hoặc làm chả giò."
+            Description = "Là loại tôm nhỏ, đã bóc vỏ và xào chín. Có thể rim nước mắm, rim cùng với thịt, hoặc băm nhỏ để nấu canh hoặc làm chả giò."
             Price = "130,000đ"
             Unit = KhayNuaKg
             Image = "04-tom-sat.jpg"
             Categories = [ Tom ]
           }
           { Name = "Mắm tép"
-            Description = "Tôm + thịt + mắm tép, rất tốn cơm, tiện lợi, chỉ cần hâm nóng là ăn được."
+            Description = "Gồm tôm, thịt, mắm tép. Chế biến tiện lợi, chỉ cần hâm nóng là ăn được. Ăn với cơm hoặc bánh mì đều hợp."
             Price = "200,000đ"
             Unit = HopNuaKg
             Image = "05-mam-tep.jpg"
@@ -125,28 +125,28 @@ let config =
             Categories = [ Muc ]
           }
           { Name = "Cá măng một nắng"
-            Description = "Cá măng một nắng."
+            Description = "Được phơi dưới cái nắng vàng óng đủ vừa cho hương vị cá thơm ngon, ngọt dai."
             Price = "130,000đ"
             Unit = KhayNuaKg
             Image = "08-ca-mang-mot-nang.jpg"
             Categories = [ Ca ]
           }
           { Name = "Cá thu một nắng"
-            Description = "Cá thu một nắng."
+            Description = "Loại cá thu tươi đã được làm sạch đem phơi qua một nắng để giúp thịt cá săn chắc và ngọt hơn khi ăn."
             Price = "170,000đ"
             Unit = KhayNuaKg
             Image = "09-ca-thu-mot-nang.jpg"
             Categories = [ Ca ]
           }
           { Name = "Ghẹ bóc nõn"
-            Description = "Ghẹ bóc nõn."
+            Description = "Phần thịt được tách bỏ từ phần thân và phần càng của ghẹ biển. Loại hải sản cao cấp, thơm ngon được nhiều người yêu thích."
             Price = "300,000đ"
             Unit = KhayNuaKg
             Image = "10-ghe-boc-non.jpg"
             Categories = [ Ghe ]
           }
           { Name = "Tôm tích bóc nõn"
-            Description = "Tôm tích bóc nõn."
+            Description = "Được chọn lọc từ những con tôm tích còn tươi sống, hấp chín bỏ vỏ, lấy phần thịt. Thịt tôm chắc và dai ngọt. phù hợp chế biến nhiều món ăn ngon."
             Price = "215,000đ"
             Unit = KhayNuaKg
             Image = "11-tom-tich-boc-non.jpg"
