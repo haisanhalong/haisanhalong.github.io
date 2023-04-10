@@ -38,11 +38,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Install Node.js dependencies
-        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
-        
       - name: Restore dotnet tool
         run: "dotnet tool restore"
+
+      - name: Install Node.js dependencies
+        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
         
       - name: Build with Fable
         run: "dotnet fable --run npm run build"
