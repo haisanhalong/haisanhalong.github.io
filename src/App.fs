@@ -102,22 +102,22 @@ let view model dispatch =
     let renderProduct (product: Product) = Html.div [
         prop.classes [ "product"; "grid-item" ]
         prop.children [
-            Html.img [ prop.src $"images/{product.Image}"; prop.className "product__image" ]
+            Html.img [ prop.src $"images/{product.Image}" ]
             Html.div [
                 prop.className "card-content"
                 prop.children [
                     Html.div [
-                        prop.className "product__titlebar"
+                        prop.className "product-titlebar"
                         prop.children [
-                            Html.h3 [ prop.className "product__name"; prop.text product.Name ]
+                            Html.h3 product.Name
                             Html.div [
-                                prop.className "product__price"
+                                prop.className "product-price"
                                 prop.children [ Html.strong $"{product.Price} / {product.Unit}" ]
                             ]
                         ]
                     ]
                     Html.p [
-                        prop.className "product__description"
+                        
                         prop.text product.Description
                     ]
                 ]
@@ -131,14 +131,14 @@ let view model dispatch =
             prop.classes [ "category-wrapper"; "container" ]
             prop.children [
                 Html.a [
-                    prop.className (if model.SelectedCategory = None then "btnSelected" else "btn")
+                    prop.className (if model.SelectedCategory = None then "btn-selected" else "btn")
                     prop.text "Tất cả"
                     prop.href "javascript:void(0)"
                     prop.onClick (fun _ -> dispatch <| SelectCategory None)
                 ]
                 for category in allCategories do
                     Html.a [
-                        prop.className (if model.SelectedCategory = Some category then "btnSelected" else "btn")
+                        prop.className (if model.SelectedCategory = Some category then "btn-selected" else "btn")
                         prop.text (string category)
                         prop.href "javascript:void(0)"
                         prop.onClick (fun _ -> dispatch <| SelectCategory (Some category))
