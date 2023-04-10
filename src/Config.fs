@@ -146,7 +146,7 @@ let config =
             Categories = [ Ghe ]
           }
           { Name = "Tôm tích bóc nõn"
-            Description = "Được chọn lọc từ những con tôm tích còn tươi sống, hấp chín bỏ vỏ, lấy phần thịt. Thịt tôm chắc và dai ngọt. phù hợp chế biến nhiều món ăn ngon."
+            Description = "Được chọn lọc từ những con tôm tích còn tươi sống, hấp chín bỏ vỏ, lấy phần thịt. Thịt tôm chắc và dai ngọt, phù hợp chế biến nhiều món ăn ngon."
             Price = "215,000đ"
             Unit = KhayNuaKg
             Image = "11-tom-tich-boc-non.jpg"
