@@ -78,6 +78,7 @@ let view model dispatch =
             prop.className "collage"
             prop.style [
                 style.backgroundImage "url(images/collage.jpg)"
+                style.backgroundRepeat.repeatX
             ]
             prop.children [
                 Html.div [
@@ -113,10 +114,7 @@ let view model dispatch =
                             ]
                         ]
                     ]
-                    Html.p [
-                        
-                        prop.text product.Description
-                    ]
+                    Html.p product.Description
                 ]
             ]
         ]
