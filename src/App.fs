@@ -1,11 +1,8 @@
 module App
 
-open Browser.Dom
 open Elmish
 open Elmish.React
 open Feliz
-
-document.title <- config.SiteName
 
 type Model =
     { SelectedCategory: Category option

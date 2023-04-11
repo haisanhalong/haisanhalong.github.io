@@ -124,6 +124,13 @@ let config =
             Image = "07-muc-ong-ngon.jpg"
             Categories = [ Muc ]
           }
+          { Name = "Cá đù một nắng"
+            Description = "Dẻo thịt, vị mặn tự nhiên, dễ ăn, dễ chế biến chấm tương rất ngon."
+            Price = "100,000đ"
+            Unit = NuaKg
+            Image = "14-ca-du-mot-nang.jpg"
+            Categories = [ Ca ]
+          }
           { Name = "Cá măng một nắng"
             Description = "Được phơi dưới cái nắng vàng óng đủ vừa cho hương vị cá thơm ngon, ngọt dai."
             Price = "130,000đ"
@@ -165,13 +172,6 @@ let config =
             Unit = Kg
             Image = "13-sa-sung.jpg"
             Categories = [ Other ]
-          }
-          { Name = "Cá đù một nắng"
-            Description = "Dẻo thịt, vị mặn tự nhiên, dễ ăn, dễ chế biến chấm tương rất ngon."
-            Price = "100,000đ"
-            Unit = NuaKg
-            Image = "14-ca-du-mot-nang.jpg"
-            Categories = [ Ca ]
           }
       ]
       FooterText = "© Copyright 2023 Hải Sản Hạ Long"
