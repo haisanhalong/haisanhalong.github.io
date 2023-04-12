@@ -29,9 +29,10 @@ h2 {
 a {
   text-decoration: none;
   color: #04724dff; }
-  a:hover {
-    color: #8db38bff;
-    cursor: pointer; }
+  @media (hover: hover) {
+    a:hover {
+      color: #8db38bff;
+      cursor: pointer; } }
 
 section {
   margin-bottom: 2rem; }
@@ -89,25 +90,17 @@ a.btn {
   border: 4px solid #01050d;
   border-radius: 6px;
   transition: all 0.3s ease 0s; }
-  a.btn:hover {
-    color: #56876dff;
-    border-radius: 50px;
-    border-color: #56876dff;
-    transition: all 0.3s ease 0s; }
+  @media (hover: hover) {
+    a.btn:hover {
+      color: #56876dff;
+      border-radius: 50px;
+      border-color: #56876dff;
+      transition: all 0.3s ease 0s; } }
   a.btn.selected {
     color: #56876dff;
     border-radius: 50px;
     border-color: #56876dff;
     transition: all 0.3s ease 0s; }
-
-/* a.btn-selected {
-  color: #56876dff;
-  padding: 20px;
-  border: 4px solid #01050d;
-  border-radius: 50px;
-  border-color: #56876dff;
-  transition: all 0.3s ease 0s;
-} */
 
 .collage {
   /* Prevent vertical gaps */
