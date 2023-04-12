@@ -120,7 +120,7 @@ let view model dispatch =
         ]
     ]
 
-    let catalog = Html.section [
+    let products = Html.section [
         Html.h2 "Danh mục sản phẩm"
         Html.div [
             prop.classes [ "category-wrapper"; "container" ]
@@ -153,6 +153,33 @@ let view model dispatch =
         ]
     ]
 
+    let renderReview (review: Review) =
+        Html.figure [
+            prop.classes [ "review"; "grid-item" ]
+            prop.children [
+                Html.img [ prop.src $"images/{review.Image}" ]
+                Html.figcaption [
+                    Html.blockquote [ Html.p review.Content ]
+                    Html.h3 review.Author
+                ]
+            ]
+        ]
+
+    let reviews = Html.section [
+        Html.h2 "Khách hàng đánh giá"
+        Html.div [
+            prop.className "container"
+            prop.children [
+                Html.div [
+                    prop.classes [ "reviews"; "flex-grid" ]
+                    prop.children [
+                        for review in config.Reviews do renderReview review
+                    ]
+                ]
+            ]
+        ]
+    ]
+
     let footer = Html.footer [
         Html.p config.FooterText
     ]
@@ -161,7 +188,8 @@ let view model dispatch =
         header
         Html.main [
             collage
-            catalog
+            products
+            reviews
         ]
         footer
     ]

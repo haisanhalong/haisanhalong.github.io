@@ -43,6 +43,11 @@ type Product =
       Image: string
       Categories: Category list }
 
+type Review =
+    { Author: string
+      Content: string
+      Image: string }
+
 type Config =
     { SiteName: string
       SiteDescription: string
@@ -51,6 +56,7 @@ type Config =
       WelcomeText: string
       CollageImage: string
       Products: Product list
+      Reviews: Review list
       FooterText: string }
 
 let config =
@@ -172,6 +178,16 @@ let config =
             Unit = Kg
             Image = "13-sa-sung.jpg"
             Categories = [ Other ]
+          }
+      ]
+      Reviews = [
+          { Author = "Anh Hoàng Lâm Q.7"
+            Content = "Confirm là tôm sắt rất ngon nhé 👍👍👍"
+            Image = "review-hoang-lam.jpg"
+          }
+          { Author = "Chị Thảo Lê Q.PN"
+            Content = "Ăn hao cơm lắm luôn, lâu lắm rồi mình mới ăn tới chén cơm thứ 3 🥰"
+            Image = "review-thao-le.jpg"
           }
       ]
       FooterText = "© Copyright 2023 Hải Sản Hạ Long"
