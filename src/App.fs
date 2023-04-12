@@ -126,13 +126,13 @@ let view model dispatch =
             prop.classes [ "category-wrapper"; "container" ]
             prop.children [
                 Html.a [
-                    prop.className (if model.SelectedCategory = None then "btn-selected" else "btn")
+                    prop.classes [ "btn"; if model.SelectedCategory = None then "selected" ]
                     prop.text "Tất cả"
                     prop.onClick (fun _ -> dispatch <| SelectCategory None)
                 ]
                 for category in allCategories do
                     Html.a [
-                        prop.className (if model.SelectedCategory = Some category then "btn-selected" else "btn")
+                        prop.className [ "btn"; if model.SelectedCategory = Some category then "selected" ]
                         prop.text (string category)
                         prop.onClick (fun _ -> dispatch <| SelectCategory (Some category))
                     ]
