@@ -100,7 +100,7 @@ let view model dispatch =
     let renderProduct (product: Product) = Html.div [
         prop.classes [ "product"; "grid-item" ]
         prop.children [
-            Html.img [ prop.src $"images/{product.Image}" ]
+            Html.img [ prop.src $"images/{product.Image}"; prop.alt "product image" ]
             Html.div [
                 prop.className "card-content"
                 prop.children [
@@ -128,14 +128,12 @@ let view model dispatch =
                 Html.a [
                     prop.className (if model.SelectedCategory = None then "btn-selected" else "btn")
                     prop.text "Tất cả"
-                    prop.href "javascript:void(0)"
                     prop.onClick (fun _ -> dispatch <| SelectCategory None)
                 ]
                 for category in allCategories do
                     Html.a [
                         prop.className (if model.SelectedCategory = Some category then "btn-selected" else "btn")
                         prop.text (string category)
-                        prop.href "javascript:void(0)"
                         prop.onClick (fun _ -> dispatch <| SelectCategory (Some category))
                     ]
             ]
@@ -157,7 +155,7 @@ let view model dispatch =
         Html.figure [
             prop.classes [ "review"; "grid-item" ]
             prop.children [
-                Html.img [ prop.src $"images/{review.Image}" ]
+                Html.img [ prop.src $"images/{review.Image}"; prop.alt "review image" ]
                 Html.figcaption [
                     Html.blockquote [ Html.p review.Content ]
                     Html.h3 review.Author
