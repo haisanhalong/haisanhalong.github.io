@@ -15,11 +15,10 @@ let init () =
     { SelectedCategory = None
       SelectedProducts = config.Products }
 
-let update msg model =
+let update msg _ =
     match msg with
     | SelectCategory category ->
-        { model with
-            SelectedCategory = category
+        {   SelectedCategory = category
             SelectedProducts =
                 match category with
                 | None -> config.Products

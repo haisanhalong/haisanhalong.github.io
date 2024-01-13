@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="src\Config.fs" />
         <Compile Include="src\App.fs" />
         <Content Include="dist\index.html" />
-        <PackageReference Include="Fable.Elmish.React" Version="4.0.0" />        
-        <PackageReference Include="Feliz" Version="2.6.0" />
+        <Content Include="package.json" />
+        <PackageReference Include="Fable.Elmish.React" Version="4.0.0" />
+        <PackageReference Include="Feliz" Version="2.7.0" />
+        <PackageReference Update="FSharp.Core" Version="8.0.101" />
     </ItemGroup>
 </Project>
