@@ -6,10 +6,8 @@
     <ItemGroup>
         <Compile Include="src\Config.fs" />
         <Compile Include="src\App.fs" />
-        <Content Include="dist\index.html" />
-        <Content Include="package.json" />
         <PackageReference Include="Fable.Elmish.React" Version="4.0.0" />
         <PackageReference Include="Feliz" Version="2.7.0" />
-        <PackageReference Update="FSharp.Core" Version="8.0.101" />
+        <PackageReference Update="FSharp.Core" Version="8.0.200" />
     </ItemGroup>
 </Project>

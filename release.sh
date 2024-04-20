@@ -1,1 +1,1 @@
-dotnet fable --run npm run build
+dotnet fable --verbose --run npx vite build

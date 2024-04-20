@@ -1,1 +1,1 @@
-dotnet fable watch --run npm start
+dotnet fable watch --verbose --run npx vite

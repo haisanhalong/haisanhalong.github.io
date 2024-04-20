@@ -60,11 +60,12 @@ type Config =
       FooterText: string }
 
 let config =
-    { SiteName = "Hải Sản Hạ Long"
+    let name = "Hải Sản Hạ Long"
+    { SiteName = name
       SiteDescription = "Chúng tôi chuyên phục vụ các mặt hàng hải sản chất lượng."
       FacebookMessenger = "chiepepper0310"
       PhoneNumber = "0987918796"
-      WelcomeText = "Hải Sản Hạ Long xin kính chào quý khách!"
+      WelcomeText = $"{name} xin kính chào quý khách!"
       CollageImage = "collage.jpg"
       Products = [
           { Name = "Chả mực"
@@ -190,5 +191,5 @@ let config =
             Image = "review-thao-le.jpg"
           }
       ]
-      FooterText = "© Copyright 2023 Hải Sản Hạ Long"
+      FooterText = $"© Copyright 2023 {name}"
     }
