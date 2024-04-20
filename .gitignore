@@ -2,6 +2,5 @@
 bin/
 obj/
 /node_modules/
-/dist/main.js
-/dist/main.js.LICENSE.txt
+/dist/
 *.fs.js
