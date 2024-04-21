@@ -1,1 +1,1 @@
-dotnet fable watch --verbose --run npx vite
+dotnet fable watch --verbose --noCache --run npx vite
