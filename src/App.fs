@@ -99,7 +99,7 @@ let view model dispatch =
     let renderProduct (product: Product) = Html.div [
         prop.classes [ "product"; "grid-item" ]
         prop.children [
-            Html.img [ prop.src $"images/{product.Image}"; prop.alt product.Name ]
+            Html.img [ prop.src $"images/{product.Image}"; prop.alt "product image" ]
             Html.div [
                 prop.className "card-content"
                 prop.children [
