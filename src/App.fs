@@ -169,9 +169,7 @@ let view model dispatch =
             prop.children [
                 Html.div [
                     prop.classes [ "reviews"; "flex-grid" ]
-                    prop.children [
-                        for review in config.Reviews do renderReview review
-                    ]
+                    prop.children (config.Reviews |> List.map renderReview)
                 ]
             ]
         ]
