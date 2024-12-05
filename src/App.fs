@@ -1,9 +1,5 @@
 module App
 
-open Elmish
-open Elmish.React
-open Feliz
-
 type Model =
     { SelectedCategory: Category option
       SelectedProducts: Product list }
@@ -31,41 +27,41 @@ let allCategories =
     [ for p in config.Products do yield! p.Categories ]
     |> Set.ofList
 
-let view model dispatch =
+open Sutil
+open Sutil.CoreElements
+
+let view () =
+    let model, dispatch = Store.makeElmishSimple init update ignore ()
+
     let header = Html.header [
         Html.div [
-            prop.className "container"
-            prop.children [
-                Html.a [
-                    Html.img [ prop.src "images/logo.png"; prop.title config.SiteName ]
+            Attr.className "container"
+            Html.a [
+                Html.img [
+                    Attr.src "images/logo.png"
+                    Attr.title config.SiteName
+                ]
+            ]
+            Html.div [
+                prop.className "right-stuff"
+                Html.div [
+                    Html.a [
+                        Attr.href $"https://m.me/{config.FacebookMessenger}"
+                        Attr.target "blank"
+                        Html.i [ Attr.classes [ "fab"; "fa-lg"; "fa-facebook-messenger" ] ]
+                        Html.text " Messenger"
+                    ]
                 ]
                 Html.div [
-                    prop.className "right-stuff"
-                    prop.children [
-                        Html.div [
-                            Html.a [
-                                prop.href $"https://m.me/{config.FacebookMessenger}"
-                                prop.target "blank"
-                                prop.children [
-                                    Html.i [ prop.classes [ "fab"; "fa-lg"; "fa-facebook-messenger" ] ]
-                                    Html.text " Messenger"
-                                ]
-                            ]
-                        ]
-                        Html.div [
-                            Html.a [
-                                prop.href $"tel:{config.PhoneNumber}"
-                                prop.children [
-                                    Html.i [ prop.classes [ "fas"; "fa-lg"; "fa-phone" ] ]
-                                    Html.text $" {config.PhoneNumber}"
-                                ]
-                            ]
-                            Html.a [
-                                prop.href $"https://zalo.me/{config.PhoneNumber}"
-                                prop.target "blank"
-                                prop.text " | Zalo"
-                            ]
-                        ]
+                    Html.a [
+                        Attr.href $"tel:{config.PhoneNumber}"
+                        Html.i [ Attr.classes [ "fas"; "fa-lg"; "fa-phone" ] ]
+                        Html.text $" {config.PhoneNumber}"
+                    ]
+                    Html.a [
+                        Attr.href $"https://zalo.me/{config.PhoneNumber}"
+                        Attr.target "_blank"
+                        Html.text " | Zalo"
                     ]
                 ]
             ]
@@ -74,103 +70,88 @@ let view model dispatch =
 
     let collage = Html.section [
         Html.div [
-            prop.className "collage"
-            prop.style [
-                style.backgroundImage "url(images/collage.jpg)"
-                style.backgroundRepeat.repeatX
+            Attr.className "collage"
+            Attr.style [
+                Css.backgroundImageUrl "images/collage.jpg"
+                Css.backgroundRepeatRepeatX
             ]
-            prop.children [
+            Html.div [
+                Attr.className "collage-overlay"
                 Html.div [
-                    prop.className "collage-overlay"
-                    prop.children [
-                        Html.div [
-                            prop.className "collage-overlay-text"
-                            prop.children [
-                                Html.h1 config.WelcomeText
-                                Html.p [ Html.strong config.SiteDescription ]
-                            ]
-                        ]
-                    ]
+                    Attr.className "collage-overlay-text"
+                    Html.h1 config.WelcomeText
+                    Html.p [ Html.strong config.SiteDescription ]
                 ]
             ]
         ]
     ]
 
     let renderProduct (product: Product) = Html.div [
-        prop.classes [ "product"; "grid-item" ]
-        prop.children [
-            Html.img [ prop.src $"images/{product.Image}"; prop.alt "product image" ]
+        Attr.classes [ "product"; "grid-item" ]
+        Html.img [
+            Attr.src $"images/{product.Image}"
+            Attr.alt "product image"
+        ]
+        Html.div [
+            Attr.className "card-content"
             Html.div [
-                prop.className "card-content"
-                prop.children [
-                    Html.div [
-                        prop.className "product-titlebar"
-                        prop.children [
-                            Html.h3 product.Name
-                            Html.div [
-                                prop.className "product-price"
-                                prop.children [ Html.strong $"{product.Price} / {product.Unit}" ]
-                            ]
-                        ]
-                    ]
-                    Html.p product.Description
+                Attr.className "product-titlebar"
+                Html.h3 product.Name
+                Html.div [
+                    Attr.className "product-price"
+                    Html.strong $"{product.Price} / {product.Unit}"
                 ]
             ]
+            Html.p product.Description
         ]
     ]
 
     let products = Html.section [
         Html.h2 "Danh mục sản phẩm"
         Html.div [
-            prop.classes [ "category-wrapper"; "container" ]
-            prop.children [
-                Html.a [
-                    prop.classes [ "btn"; if model.SelectedCategory = None then "selected" ]
-                    prop.text "Tất cả"
-                    prop.onClick (fun _ -> dispatch <| SelectCategory None)
-                ]
-                for category in allCategories do
-                    Html.a [
-                        prop.className [ "btn"; if model.SelectedCategory = Some category then "selected" ]
-                        prop.text (string category)
-                        prop.onClick (fun _ -> dispatch <| SelectCategory (Some category))
-                    ]
+            Attr.classes [ "category-wrapper"; "container" ]
+            Html.a [
+                Attr.className "btn"
+                Bind.toggleClass (model .> (fun m -> m.SelectedCategory = None), "selected")
+                Attr.text "Tất cả"
+                Ev.onClick (fun _ -> dispatch (SelectCategory None))
             ]
+            for category in allCategories do
+                Html.a [
+                    Attr.className "btn"
+                    Bind.toggleClass (model .> (fun m -> m.SelectedCategory = Some category), "selected")
+                    Attr.text (string category)
+                    Ev.onClick (fun _ -> dispatch (SelectCategory (Some category)))
+                ]
         ]
         Html.div [
-            prop.className "container"
-            prop.children [
-                Html.div [
-                    prop.classes [ "products"; "flex-grid" ]
-                    prop.children [
-                        for product in model.SelectedProducts do renderProduct product
-                    ]
-                ]
+            Attr.className "container"
+            Html.div [
+                Attr.classes [ "products"; "flex-grid" ]
+                Bind.each (model .> _.SelectedProducts, renderProduct)
             ]
         ]
     ]
 
-    let renderReview (review: Review) =
-        Html.figure [
-            prop.classes [ "review"; "grid-item" ]
-            prop.children [
-                Html.img [ prop.src $"images/{review.Image}"; prop.alt "review image" ]
-                Html.figcaption [
-                    Html.blockquote [ Html.p review.Content ]
-                    Html.h3 review.Author
-                ]
-            ]
+    let renderReview (review: Review) = Html.figure [
+        Attr.classes [ "review"; "grid-item" ]
+        Html.img [
+            Attr.src $"images/{review.Image}"
+            Attr.alt "review image"
         ]
+        Html.figcaption [
+            Html.blockquote [ Html.p review.Content ]
+            Html.h3 review.Author
+        ]
+    ]
 
     let reviews = Html.section [
         Html.h2 "Khách hàng đánh giá"
         Html.div [
-            prop.className "container"
-            prop.children [
-                Html.div [
-                    prop.classes [ "reviews"; "flex-grid" ]
-                    prop.children (config.Reviews |> List.map renderReview)
-                ]
+            Attr.className "container"
+            Html.div [
+                Attr.classes [ "reviews"; "flex-grid" ]
+                yield! (config.Reviews |> List.map renderReview)
             ]
         ]
     ]
@@ -180,6 +161,7 @@ let view model dispatch =
     ]
 
     Html.div [
+        disposeOnUnmount [ model ]
         header
         Html.main [
             collage
@@ -189,6 +171,5 @@ let view model dispatch =
         footer
     ]
 
-Program.mkSimple init update view
-|> Program.withReactSynchronous "app"
-|> Program.run
+Program.mount ("app", view())
+|> ignore
