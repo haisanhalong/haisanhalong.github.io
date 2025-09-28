@@ -27,141 +27,178 @@ let allCategories =
     [ for p in config.Products do yield! p.Categories ]
     |> Set.ofList
 
-open Sutil
-open Sutil.CoreElements
+open Fastoch.Feliz
 
-let view () =
-    let model, dispatch = Store.makeElmishSimple init update ignore ()
-
-    let header = Html.header [
-        Html.div [
-            Attr.className "container"
+let view model dispatch =
+    let header =
+        let logo =
             Html.a [
                 Html.img [
-                    Attr.src "images/logo.png"
-                    Attr.title config.SiteName
+                    prop.src "images/logo.png"
+                    prop.title config.SiteName
                 ]
             ]
+        let messenger =
             Html.div [
-                prop.className "right-stuff"
-                Html.div [
-                    Html.a [
-                        Attr.href $"https://m.me/{config.FacebookMessenger}"
-                        Attr.target "blank"
-                        Html.i [ Attr.classes [ "fab"; "fa-lg"; "fa-facebook-messenger" ] ]
+                Html.a [
+                    prop.href $"https://m.me/{config.FacebookMessenger}"
+                    prop.target "blank"
+                    prop.children [
+                        Html.i [ prop.classes [ "fab"; "fa-lg"; "fa-facebook-messenger" ] ]
                         Html.text " Messenger"
                     ]
                 ]
-                Html.div [
-                    Html.a [
-                        Attr.href $"tel:{config.PhoneNumber}"
-                        Html.i [ Attr.classes [ "fas"; "fa-lg"; "fa-phone" ] ]
-                        Html.text $" {config.PhoneNumber}"
-                    ]
-                    Html.a [
-                        Attr.href $"https://zalo.me/{config.PhoneNumber}"
-                        Attr.target "_blank"
-                        Html.text " | Zalo"
-                    ]
-                ]
             ]
-        ]
-    ]
-
-    let collage = Html.section [
-        Html.div [
-            Attr.className "collage"
-            Attr.style [
-                Css.backgroundImageUrl "images/collage.jpg"
-                Css.backgroundRepeatRepeatX
-            ]
-            Html.div [
-                Attr.className "collage-overlay"
-                Html.div [
-                    Attr.className "collage-overlay-text"
-                    Html.h1 config.WelcomeText
-                    Html.p [ Html.strong config.SiteDescription ]
-                ]
-            ]
-        ]
-    ]
-
-    let renderProduct (product: Product) = Html.div [
-        Attr.classes [ "product"; "grid-item" ]
-        Html.img [
-            Attr.src $"images/{product.Image}"
-            Attr.alt "product image"
-        ]
-        Html.div [
-            Attr.className "card-content"
-            Html.div [
-                Attr.className "product-titlebar"
-                Html.h3 product.Name
-                Html.div [
-                    Attr.className "product-price"
-                    Html.strong $"{product.Price} / {product.Unit}"
-                ]
-            ]
-            Html.p product.Description
-        ]
-    ]
-
-    let products = Html.section [
-        Html.h2 "Danh mục sản phẩm"
-        Html.div [
-            Attr.classes [ "category-wrapper"; "container" ]
+        let phone =
             Html.a [
-                Attr.className "btn"
-                Bind.toggleClass (model .> (fun m -> m.SelectedCategory = None), "selected")
-                Attr.text "Tất cả"
-                Ev.onClick (fun _ -> dispatch (SelectCategory None))
-            ]
-            for category in allCategories do
-                Html.a [
-                    Attr.className "btn"
-                    Bind.toggleClass (model .> (fun m -> m.SelectedCategory = Some category), "selected")
-                    Attr.text (string category)
-                    Ev.onClick (fun _ -> dispatch (SelectCategory (Some category)))
+                prop.href $"tel:{config.PhoneNumber}"
+                prop.children [
+                    Html.i [ prop.classes [ "fas"; "fa-lg"; "fa-phone" ] ]
+                    Html.text $" {config.PhoneNumber}"
                 ]
-        ]
-        Html.div [
-            Attr.className "container"
+            ]
+        let zalo =
+            Html.a [
+                prop.href $"https://zalo.me/{config.PhoneNumber}"
+                prop.target "_blank"
+                prop.children (Html.text " | Zalo")
+            ]
+        Html.header [
             Html.div [
-                Attr.classes [ "products"; "flex-grid" ]
-                Bind.each (model .> _.SelectedProducts, renderProduct)
+                prop.className "container"
+                prop.children [
+                    logo
+                    Html.div [
+                        prop.className "right-stuff"
+                        prop.children [
+                            messenger
+                            Html.div [ phone; zalo ]
+                        ]
+                    ]
+                ]
             ]
         ]
-    ]
 
-    let renderReview (review: Review) = Html.figure [
-        Attr.classes [ "review"; "grid-item" ]
-        Html.img [
-            Attr.src $"images/{review.Image}"
-            Attr.alt "review image"
-        ]
-        Html.figcaption [
-            Html.blockquote [ Html.p review.Content ]
-            Html.h3 review.Author
-        ]
-    ]
-
-    let reviews = Html.section [
-        Html.h2 "Khách hàng đánh giá"
-        Html.div [
-            Attr.className "container"
+    let collage =
+        Html.section [
             Html.div [
-                Attr.classes [ "reviews"; "flex-grid" ]
-                yield! (config.Reviews |> List.map renderReview)
+                prop.className "collage"
+                prop.style [
+                    style.backgroundImageUrl "images/collage.jpg"
+                    style.backgroundRepeat.repeatX
+                ]
+                prop.children [
+                    Html.div [
+                        prop.className "collage-overlay"
+                        prop.children [
+                            Html.div [
+                                prop.className "collage-overlay-text"
+                                prop.children [
+                                    Html.h1 config.WelcomeText
+                                    Html.p [ Html.strong config.SiteDescription ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
             ]
         ]
-    ]
 
-    let footer = Html.footer [
-        Html.p config.FooterText
-    ]
+    let renderProduct (product: Product) =
+        Html.div [
+            prop.classes [ "product"; "grid-item" ]
+            prop.children [
+                Html.img [
+                    prop.src $"images/{product.Image}"
+                    prop.alt "product image"
+                ]
+                Html.div [
+                    prop.className "card-content"
+                    prop.children [
+                        Html.div [
+                            prop.className "product-titlebar"
+                            prop.children [
+                                Html.h3 product.Name
+                                Html.div [
+                                    prop.className "product-price"
+                                    prop.children [ Html.strong $"{product.Price} / {product.Unit}" ]
+                                ]
+                            ]
+                        ]
+                        Html.p product.Description
+                    ]
+                ]
+            ]
+        ]
+
+    let products =
+        Html.section [
+            Html.h2 "Danh mục sản phẩm"
+            Html.div [
+                prop.classes [ "category-wrapper"; "container" ]
+                prop.children [
+                    Html.a [
+                        prop.classes [
+                            "btn"
+                            if model.SelectedCategory.IsNone then "selected"
+                        ]
+                        prop.text "Tất cả"
+                        prop.onClick (fun _ -> dispatch (SelectCategory None))
+                    ]
+                    for category in allCategories do
+                        Html.a [
+                            prop.classes [
+                                "btn"
+                                if model.SelectedCategory = Some category then "selected"
+                            ]
+                            prop.text (category.ToString())
+                            prop.onClick (fun _ -> dispatch (SelectCategory (Some category)))
+                        ]
+                ]
+            ]
+            Html.div [
+                prop.className "container"
+                prop.children [
+                    Html.div [
+                        prop.classes [ "products"; "flex-grid" ]
+                        prop.children (model.SelectedProducts |> List.map renderProduct)
+                    ]
+                ]
+            ]
+        ]
+
+    let renderReview (review: Review) =
+        Html.figure [
+            prop.classes [ "review"; "grid-item" ]
+            prop.children [
+                Html.img [
+                    prop.src $"images/{review.Image}"
+                    prop.alt "review image"
+                ]
+                Html.figcaption [
+                    Html.blockquote [ Html.p review.Content ]
+                    Html.h3 review.Author
+                ]
+            ]
+        ]
+
+    let reviews =
+        Html.section [
+            Html.h2 "Khách hàng đánh giá"
+            Html.div [
+                prop.className "container"
+                prop.children [
+                    Html.div [
+                        prop.classes [ "reviews"; "flex-grid" ]
+                        prop.children (config.Reviews |> List.map renderReview)
+                    ]
+                ]
+            ]
+        ]
+
+    let footer = Html.footer [ Html.p config.FooterText ]
 
     Html.div [
-        disposeOnUnmount [ model ]
         header
         Html.main [
             collage
@@ -171,5 +208,9 @@ let view () =
         footer
     ]
 
-Program.mount ("app", view())
-|> ignore
+open Elmish
+open Fastoch.Elmish
+
+Program.mkSimple init update view
+|> Program.withFastoch "app"
+|> Program.run
