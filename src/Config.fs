@@ -186,7 +186,7 @@ let config =
             Content = "Confirm là tôm sắt rất ngon nhé 👍👍👍"
             Image = "review-hoang-lam.jpg"
           }
-          { Author = "Chị Thảo Lê Q.PN"
+          { Author = "Chị Thảo Lê Q.Phú Nhuận"
             Content = "Ăn hao cơm lắm luôn, lâu lắm rồi mình mới ăn tới chén cơm thứ 3 🥰"
             Image = "review-thao-le.jpg"
           }
