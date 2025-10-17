@@ -4,10 +4,11 @@
         <TargetFramework>net9.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="src\Config.fs" />
-        <Compile Include="src\App.fs" />
+        <Compile Include="src\Config.fs"/>
+        <Compile Include="src\App.fs"/>
+        <Content Include="index.html" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="Fastoch" Version="0.7.2" />
+        <PackageReference Include="Fastoch" Version="0.7.2"/>
     </ItemGroup>
 </Project>
