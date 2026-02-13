@@ -191,5 +191,5 @@ let config =
             Image = "review-thao-le.jpg"
           }
       ]
-      FooterText = $"© Copyright 2023 {name}"
+      FooterText = $"© Copyright 2026 {name}"
     }
