@@ -9,6 +9,6 @@
         <Content Include="index.html"/>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Fastoch" Version="0.7.2"/>
+        <PackageReference Include="Fastoch" Version="0.11.0" />
     </ItemGroup>
 </Project>

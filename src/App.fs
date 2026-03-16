@@ -1,21 +1,27 @@
 module App
 
-type Model =
-    { SelectedCategory: Category option
-      SelectedProducts: Product list }
+open Fastoch.Feliz
+open Fastoch.Elmish
+
+type Model = {
+    selectedCategory: Category option
+    selectedProducts: Product list
+}
 
 type Msg =
     | SelectCategory of Category option
 
-let init () =
-    { SelectedCategory = None
-      SelectedProducts = config.Products }
+let init () = {
+    selectedCategory = None
+    selectedProducts = config.Products
+}
 
 let update msg _ =
     match msg with
     | SelectCategory category ->
-        {   SelectedCategory = category
-            SelectedProducts =
+        {
+            selectedCategory = category
+            selectedProducts =
                 match category with
                 | None -> config.Products
                 | Some category ->
@@ -27,9 +33,7 @@ let allCategories =
     [ for p in config.Products do yield! p.Categories ]
     |> Set.ofList
 
-open Fastoch.Feliz
-
-let view model dispatch =
+let view dispatch model  =
     let header =
         let logo =
             Html.a [
@@ -140,7 +144,7 @@ let view model dispatch =
                     Html.a [
                         prop.classes [
                             "btn"
-                            if model.SelectedCategory.IsNone then "selected"
+                            if model.selectedCategory.IsNone then "selected"
                         ]
                         prop.text "Tất cả"
                         prop.onClick (fun _ -> dispatch (SelectCategory None))
@@ -149,7 +153,7 @@ let view model dispatch =
                         Html.a [
                             prop.classes [
                                 "btn"
-                                if model.SelectedCategory = Some category then "selected"
+                                if model.selectedCategory = Some category then "selected"
                             ]
                             prop.text (category.ToString())
                             prop.onClick (fun _ -> dispatch (SelectCategory (Some category)))
@@ -161,7 +165,7 @@ let view model dispatch =
                 prop.children [
                     Html.div [
                         prop.classes [ "products"; "flex-grid" ]
-                        prop.children (model.SelectedProducts |> List.map renderProduct)
+                        prop.children (model.selectedProducts |> List.map renderProduct)
                     ]
                 ]
             ]
@@ -207,9 +211,6 @@ let view model dispatch =
         ]
         footer
     ]
-
-open Elmish
-open Fastoch.Elmish
 
 Program.mkSimple init update view
 |> Program.withFastoch "app"
